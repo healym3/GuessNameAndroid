@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private Button showGuess;
@@ -18,13 +19,19 @@ public class MainActivity extends AppCompatActivity {
         showGuess = findViewById(R.id.guessButton);
         guessField = findViewById(R.id.guessField);
 
+
         showGuess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String guess = guessField.getText().toString().trim();
-                Intent intent = new Intent(MainActivity.this, ShowGuess.class);
-                intent.putExtra("guess", guess);
-                startActivity(intent);
+                if (!guess.isEmpty()){
+                    Intent intent = new Intent(MainActivity.this, ShowGuess.class);
+                    intent.putExtra("guess", guess);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(MainActivity.this, "Enter guess.", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

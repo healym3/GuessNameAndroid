@@ -14,9 +14,10 @@ public class ShowGuess extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_guess);
+        Bundle extra = getIntent().getExtras();
         showGuessText = findViewById(R.id.textView);
-        if (getIntent().getStringExtra("guess") != null){
-            showGuessText.setText(getIntent().getStringExtra("guess"));
+        if (extra != null){
+            showGuessText.setText(extra.getString("guess"));
         }
 
 
